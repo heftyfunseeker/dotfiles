@@ -76,13 +76,13 @@ customPlugins.add(function(use)
       "tpope/vim-fugitive"
    }
    use {
-       'williamboman/nvim-lsp-installer',
-   }
-   use {
       'heftyfunseeker/narrow'
    }
    use {
-      'chriskempson/base16-vim'
+      'j-hui/fidget.nvim',
+      config = function()
+         require('fidget').setup({})
+      end
    }
 end)
 

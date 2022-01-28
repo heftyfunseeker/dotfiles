@@ -84,7 +84,8 @@ M.plugins = {
    default_plugin_config_replace = {
       nvim_treesitter = "custom.plugins.configs.treesitter",
       dashboard = "custom.plugins.configs.dashboard",
-      telescope = "custom.plugins.configs.telescope"
+      telescope = "custom.plugins.configs.telescope",
    },
 }
+
 return M
