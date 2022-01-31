@@ -28,7 +28,7 @@ M.mappings = {
          git_commits = "<leader>cm",
          git_status = "<leader>gt",
          help_tags = "<leader>fh",
-         live_grep = "<leader>f",
+         live_grep = nil,
          oldfiles = "<leader>fo",
          themes = "<leader>th", -- NvChad theme picker
       },
