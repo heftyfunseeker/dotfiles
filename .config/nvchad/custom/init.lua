@@ -41,6 +41,14 @@ map("n", "<leader>f", ':lua vim.lsp.buf.formatting() <CR>')
 
 map("v", "y", "ygv <Esc>")
 
+-- Github Browsing shortcut
+function git_browse()
+   filename = vim.fn.expand('%')
+   line_number = vim.api.nvim_win_get_cursor(0)[1]
+   command = "!gh browse " .. filename .. ":" .. tostring(line_number)
+   vim.cmd(command)
+end
+map("n", "<leader>gb", ':lua git_browse() <CR>')
 
 -- hightlighted yank
 vim.cmd([[ au TextYankPost * silent! lua vim.highlight.on_yank() ]])
@@ -82,7 +90,7 @@ customPlugins.add(function(use)
    }
    use {
       'j-hui/fidget.nvim',
-      config = function()
+       config = function()
          require('fidget').setup({})
       end
    }
