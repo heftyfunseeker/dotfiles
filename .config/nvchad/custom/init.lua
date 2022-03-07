@@ -21,7 +21,7 @@ map("n", "<leader>f", ':lua vim.lsp.buf.formatting() <CR>')
 map("v", "y", "ygv <Esc>")
 
 -- Github Browsing shortcut
-local function git_browse()
+function git_browse()
    local filename = vim.fn.expand('%')
    local line_number = vim.api.nvim_win_get_cursor(0)[1]
    local command = "!gh browse " .. filename .. ":" .. tostring(line_number)

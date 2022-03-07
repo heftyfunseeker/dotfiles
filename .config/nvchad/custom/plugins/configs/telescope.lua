@@ -10,6 +10,13 @@ telescope.setup {
       },
       current_buffer_fuzzy_find = {
          theme = "ivy"
+      },
+      find_files = {
+         theme = "dropdown",
+         previewer = false,
+         layout_config = {
+            prompt_position = "top"
+         },
       }
    },
    defaults = {
