@@ -17,6 +17,7 @@ map("n", "<leader>nv", ':lua require("custom.utils").findNvimFile() <CR>')
 map("n", "<leader>l", ':lua require("telescope.builtin").current_buffer_fuzzy_find() <CR>')
 map("n", "<leader>q", ':lua require("telescope.builtin").quickfix() <CR>')
 map("n", "<leader>f", ':lua vim.lsp.buf.formatting() <CR>')
+map("n", "<leader>g", ':Neogit <CR>')
 
 map("v", "y", "ygv <Esc>")
 

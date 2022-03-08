@@ -16,12 +16,6 @@ return {
       "tpope/vim-surround"
    },
    {
-      "tpope/vim-obsession"
-   },
-   {
-      "tpope/vim-fugitive"
-   },
-   {
       'heftyfunseeker/narrow'
    },
    {
@@ -29,5 +23,9 @@ return {
       config = function()
          require('fidget').setup({})
       end
+   },
+   {
+      'TimUntersberger/neogit',
+      requires = 'nvim-lua/plenary.nvim',
    },
 }
