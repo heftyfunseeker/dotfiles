@@ -53,7 +53,7 @@ M.ui = {
 
 -- NvChad included plugin options & overrides
 M.plugins = {
-   install = require("custom.plugins"),
+   install = require "custom.plugins",
    status = {
       autosave = false, -- to autosave files
       blankline = true, -- show code scope with symbols

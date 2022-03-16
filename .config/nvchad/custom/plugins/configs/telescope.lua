@@ -6,18 +6,18 @@ end
 telescope.setup {
    pickers = {
       live_grep = {
-         theme = "ivy"
+         theme = "ivy",
       },
       current_buffer_fuzzy_find = {
-         theme = "ivy"
+         theme = "ivy",
       },
       find_files = {
          theme = "dropdown",
          previewer = false,
          layout_config = {
-            prompt_position = "top"
+            prompt_position = "top",
          },
-      }
+      },
    },
    defaults = {
       vimgrep_arguments = {
