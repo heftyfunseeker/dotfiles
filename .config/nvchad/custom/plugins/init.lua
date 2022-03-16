@@ -31,7 +31,11 @@ return {
    {
       'nvim-neorg/neorg',
       config = function()
-        require('neorg').setup{}
+        require('neorg').setup({
+           load = {
+              ["core.defaults"] = {}
+           }
+        })
       end,
       requires = 'nvim-lua/plenary.nvim',
    }

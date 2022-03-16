@@ -6,6 +6,7 @@ ts_config.setup {
    ensure_installed = {
       "lua",
       "rust",
+      "norg",
    },
    highlight = {
       enable = true,
