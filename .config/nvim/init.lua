@@ -1,4 +1,5 @@
-print("hello from init.lua")
 
+require('settings')
+require('maps')
 require('plugins')
 
