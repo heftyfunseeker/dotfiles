@@ -5,6 +5,29 @@ return require('packer').startup(function()
 
   use 'kyazdani42/nvim-web-devicons'
 
+  use 'heftyfunseeker/narrow'
+
+  use {
+    'ggandor/leap.nvim',
+    config = function()
+      require('leap').set_default_keymaps()
+    end
+  }
+
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
+
+  use {
+    "j-hui/fidget.nvim",
+    config = function()
+      require("fidget").setup {}
+    end
+  }
+
   use {
     'navarasu/onedark.nvim',
     config = function()

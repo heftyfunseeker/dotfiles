@@ -22,8 +22,10 @@ map('n', '<C-l>', '<C-w>l', options)
 
 -- telescope
 map('n', '<leader>ff', ':Telescope find_files<cr>', options)
-map('n', '<leader>fg', ':Telescope live_grep<cr>', options)
 map('n', '<leader>fb', ':Telescope buffers<cr>', options)
+
+-- narrow
+map('n', '<leader>s', ':Narrow<cr>', options)
 
 -- (toggle) terminal
 map('n', '<leader>t', ':ToggleTerm<cr>', options)
