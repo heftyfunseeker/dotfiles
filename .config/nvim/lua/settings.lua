@@ -2,10 +2,13 @@
 local opt = vim.opt
 local g = vim.g
 
+opt.guifont = "MonoLisa Nerd Font Mono:h16"
+opt.listchars = "tab:▷ ,trail:·,extends:◣,precedes:◢,nbsp:○"
+opt.list = true
+
 -- use filetype.lua instead of filetype.vim
 g.did_load_filetypes = 0
 g.do_filetype_lua = 1
-g.toggle_theme_icon = "   "
 
 opt.confirm = true
 opt.laststatus = 3 -- global statusline

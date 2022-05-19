@@ -31,6 +31,9 @@ map('n', '<leader>s', ':Narrow<cr>', options)
 map('n', '<leader>t', ':ToggleTerm<cr>', options)
 map('t', '<esc>', [[<C-\><C-n>]], options)
 
+-- custom utils
+map("n", "<leader>gb", ":lua require('utils').git_browse() <CR>", options)
+
 -- lsp config
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 map('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', options)
