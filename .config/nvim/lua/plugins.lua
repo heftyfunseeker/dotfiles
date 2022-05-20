@@ -8,7 +8,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'kyazdani42/nvim-web-devicons'
-  use '~/dev/narrow'
+  use 'heftyfunseeker/narrow'
 
   use {
     'ggandor/leap.nvim',
@@ -149,7 +149,7 @@ return require('packer').startup(function(use)
     end
   }
 
-  use { 
+  use {
     'TimUntersberger/neogit',
     requires = 'nvim-lua/plenary.nvim',
     config = function()
