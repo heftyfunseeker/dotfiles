@@ -8,7 +8,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'kyazdani42/nvim-web-devicons'
-  use 'heftyfunseeker/narrow'
+  use '~/dev/narrow'
 
   use {
     'ggandor/leap.nvim',
@@ -31,12 +31,13 @@ return require('packer').startup(function(use)
     end
   }
 
-  use {
-    'navarasu/onedark.nvim',
+  use({
+    "catppuccin/nvim",
+    as = "catppuccin",
     config = function()
-      require('onedark').load()
+      require('configs.catppuccin')
     end
-  }
+  })
 
   use {
     'lewis6991/gitsigns.nvim',
@@ -60,12 +61,23 @@ return require('packer').startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
       require('lualine').setup {
-        options = { theme = 'onedark' }
+        options = { theme = 'catppuccin' }
       }
     end
   }
 
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    config = function()
+      require('nvim-treesitter.configs').setup({
+        ensure_installed = { 'lua', 'rust' },
+        highlight = {
+          enable = true,
+        }
+      })
+    end
+  }
 
   use {
     'nvim-telescope/telescope.nvim',
@@ -134,6 +146,14 @@ return require('packer').startup(function(use)
           { name = 'cmdline' },
         })
       })
+    end
+  }
+
+  use { 
+    'TimUntersberger/neogit',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('neogit').setup()
     end
   }
 

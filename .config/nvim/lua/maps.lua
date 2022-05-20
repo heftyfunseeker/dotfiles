@@ -7,12 +7,12 @@ map('n', '<Space>', '', {})
 vim.g.mapleader = ' '  -- 'vim.g' sets global variables
 
 local options = { noremap = true, silent = true }
-map('n', '<leader><esc>', ':nohlsearch<cr>', options)
-map('n', '<leader>n', ':bnext<cr>', options)
-map('n', '<leader>p', ':bprev<cr>', options)
+map('n', '<esc>', ':nohlsearch<CR>', options)
+map('n', '<leader>n', ':bnext<CR>', options)
+map('n', '<leader>p', ':bprev<CR>', options)
 
 -- nvim tree
-map('n', '<C-n>', ':NvimTreeToggle<cr>', options)
+map('n', '<C-n>', ':NvimTreeToggle<CR>', options)
 
 -- window switching
 map('n', '<C-h>', '<C-w>h', options)
@@ -21,18 +21,21 @@ map('n', '<C-k>', '<C-w>k', options)
 map('n', '<C-l>', '<C-w>l', options)
 
 -- telescope
-map('n', '<leader>ff', ':Telescope find_files<cr>', options)
-map('n', '<leader>fb', ':Telescope buffers<cr>', options)
+map('n', '<leader>ff', ':Telescope find_files<CR>', options)
+map('n', '<leader>fb', ':Telescope buffers<CR>', options)
 
 -- narrow
-map('n', '<leader>s', ':Narrow<cr>', options)
+map('n', '<leader>s', ":lua require('narrow').open()<CR>", options)
 
 -- (toggle) terminal
-map('n', '<leader>t', ':ToggleTerm<cr>', options)
+map('n', '<leader>t', ':ToggleTerm<CR>', options)
 map('t', '<esc>', [[<C-\><C-n>]], options)
 
 -- custom utils
-map("n", "<leader>gb", ":lua require('utils').git_browse() <CR>", options)
+map("n", "<leader>gb", ":lua require('utils').git_browse()<CR>", options)
+
+-- neogit
+map("n", "<leader>g", ":lua require('neogit').open()<CR>", options)
 
 -- lsp config
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

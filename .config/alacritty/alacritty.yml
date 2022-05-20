@@ -15,7 +15,7 @@
 # Everforest - Alacritty
 # Define
 import:
-  - ~/.config/alacritty/themes/night-owl.yml
+  - ~/.config/alacritty/themes/catppuccin.yml
 
 
 window:
