@@ -55,3 +55,11 @@ opt.updatetime = 250
 opt.whichwrap:append "<>[]hl"
 g.mapleader = " "
 
+-- highlight yank
+vim.cmd [[ au TextYankPost * silent! lua vim.highlight.on_yank() ]]
+
+-- custom highlights
+vim.cmd "hi Comment gui=italic"
+vim.cmd "hi Keyword gui=italic"
+vim.cmd "hi Macro   gui=italic"
+

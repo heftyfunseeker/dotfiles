@@ -39,7 +39,7 @@ map("n", "<leader>g", ":lua require('neogit').open()<CR>", options)
 
 -- lsp config
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-map('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', options)
+map('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', options)
 map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', options)
 map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', options)
 map('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', options)

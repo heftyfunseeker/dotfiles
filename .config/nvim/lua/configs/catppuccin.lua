@@ -2,7 +2,7 @@ require('catppuccin').setup({
   transparent_background = false,
   term_colors = false,
   styles = {
-    comments = "italic",
+    comments = "NONE",
     functions = "NONE",
     keywords = "NONE",
     strings = "NONE",
