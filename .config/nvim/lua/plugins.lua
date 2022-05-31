@@ -36,6 +36,10 @@ return require('packer').startup(function(use)
     as = "catppuccin",
     config = function()
       require('configs.catppuccin')
+      -- custom highlights
+      vim.cmd "hi Comment gui=italic"
+      vim.cmd "hi Keyword gui=italic"
+      vim.cmd "hi Macro   gui=italic"
     end
   })
 
@@ -112,8 +116,18 @@ return require('packer').startup(function(use)
 
   use {
     'neovim/nvim-lspconfig',
+    -- config = function()
+    --   require('configs/lspconfig')
+    -- end
+  }
+
+  use {
+    'jose-elias-alvarez/typescript.nvim',
     config = function()
       require('configs/lspconfig')
+      require('typescript').setup({
+        server = {}
+      })
     end
   }
 
@@ -139,6 +153,8 @@ return require('packer').startup(function(use)
           -- documentation = cmp.config.window.bordered(),
         },
         mapping = {
+          ["<C-p>"] = cmp.mapping.select_prev_item(),
+          ["<C-n>"] = cmp.mapping.select_next_item(),
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<C-Space>'] = cmp.mapping.complete(),
@@ -161,6 +177,20 @@ return require('packer').startup(function(use)
     requires = 'nvim-lua/plenary.nvim',
     config = function()
       require('neogit').setup()
+    end
+  }
+
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function()
+      require('null-ls').setup({
+        sources = {
+          -- require("null-ls").builtins.formatting.stylua,
+          require("null-ls").builtins.diagnostics.eslint,
+          require("null-ls").builtins.formatting.eslint,
+          require("null-ls").builtins.code_actions.eslint,
+        }
+      })
     end
   }
 
