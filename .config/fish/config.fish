@@ -17,7 +17,7 @@ set PATH $PATH $HOME/.local/share/nvim/lsp_servers/tsserver/node_modules/typescr
 
 # homebrew for linux
 if test uname = "linux"
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  eval "(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 end
 
 starship init fish | source
