@@ -36,6 +36,10 @@ return require('packer').startup(function(use)
     as = "catppuccin",
     config = function()
       require('configs.catppuccin')
+      -- custom highlights
+      vim.cmd "hi Comment gui=italic"
+      vim.cmd "hi Keyword gui=italic"
+      vim.cmd "hi Macro   gui=italic"
     end
   })
 
@@ -112,8 +116,18 @@ return require('packer').startup(function(use)
 
   use {
     'neovim/nvim-lspconfig',
+    -- config = function()
+    --   require('configs/lspconfig')
+    -- end
+  }
+
+  use {
+    'jose-elias-alvarez/typescript.nvim',
     config = function()
       require('configs/lspconfig')
+      require('typescript').setup({
+        server = {}
+      })
     end
   }
 
@@ -133,10 +147,19 @@ return require('packer').startup(function(use)
           expand = function(args)
             require('luasnip').lsp_expand(args.body)
           end,
-          window = {
-            -- completion = cmp.config.window.bordered(),
-            -- documentation = cmp.config.window.bordered(),
-          },
+        },
+        window = {
+          -- completion = cmp.config.window.bordered(),
+          -- documentation = cmp.config.window.bordered(),
+        },
+        mapping = {
+          ["<C-p>"] = cmp.mapping.select_prev_item(),
+          ["<C-n>"] = cmp.mapping.select_next_item(),
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.abort(),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         },
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
@@ -168,6 +191,19 @@ return require('packer').startup(function(use)
       require('configs.octo')
     end
   }
+
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function()
+      require('null-ls').setup({
+        sources = {
+          -- require("null-ls").builtins.formatting.stylua,
+          require("null-ls").builtins.diagnostics.eslint,
+          require("null-ls").builtins.formatting.eslint,
+          require("null-ls").builtins.code_actions.eslint,
+        }
+      })
+    end
 
   if packer_bootstrap then
     require('packer').sync()

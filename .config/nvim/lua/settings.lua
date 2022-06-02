@@ -55,3 +55,7 @@ opt.updatetime = 250
 opt.whichwrap:append "<>[]hl"
 g.mapleader = " "
 
+-- highlight yank
+vim.cmd [[ au TextYankPost * silent! lua vim.highlight.on_yank() ]]
+
+
