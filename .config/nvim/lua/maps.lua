@@ -23,9 +23,11 @@ map('n', '<C-l>', '<C-w>l', options)
 -- telescope
 map('n', '<leader>ff', ':Telescope find_files<CR>', options)
 map('n', '<leader>fb', ':Telescope buffers<CR>', options)
+map('n', '<leader>s', ':Telescope live_grep<CR>', options)
+map('n', '<leader>l', ':Telescope current_buffer_fuzzy_find<CR>', options)
 
 -- narrow
-map('n', '<leader>s', ":lua require('narrow').open()<CR>", options)
+-- map('n', '<leader>s', ":lua require('narrow').open()<CR>", options)
 
 -- (toggle) terminal
 map('n', '<leader>t', ':ToggleTerm<CR>', options)
