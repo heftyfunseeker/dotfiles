@@ -1,4 +1,3 @@
-
 local opt = vim.opt
 local g = vim.g
 
@@ -37,7 +36,7 @@ opt.relativenumber = true
 opt.ruler = false
 
 -- disable nvim intro
-opt.shortmess:append "sI"
+opt.shortmess:append("sI")
 
 opt.signcolumn = "yes"
 opt.splitbelow = true
@@ -52,10 +51,8 @@ opt.updatetime = 250
 
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
-opt.whichwrap:append "<>[]hl"
+opt.whichwrap:append("<>[]hl")
 g.mapleader = " "
 
 -- highlight yank
-vim.cmd [[ au TextYankPost * silent! lua vim.highlight.on_yank() ]]
-
-
+vim.cmd([[ au TextYankPost * silent! lua vim.highlight.on_yank() ]])
