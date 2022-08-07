@@ -18,6 +18,30 @@ return require("packer").startup(function(use)
   use("heftyfunseeker/narrow")
 
   use({
+    "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end
+  })
+
+  use({
+    "williamboman/mason-lspconfig.nvim",
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "sumneko_lua", "rust_analyzer" }
+      })
+    end
+  })
+
+  use({
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("configs/lspconfig")
+    end
+  })
+
+
+  use({
     "ggandor/leap.nvim",
     config = function()
       require("leap").set_default_keymaps()
@@ -104,39 +128,6 @@ return require("packer").startup(function(use)
     "akinsho/toggleterm.nvim",
     config = function()
       require("toggleterm").setup()
-    end,
-  })
-
-  use({
-    "williamboman/nvim-lsp-installer",
-    config = function()
-      require("nvim-lsp-installer").setup({
-        automatic_installation = true,
-        ui = {
-          icons = {
-            server_installed = "✓",
-            server_pending = "➜",
-            server_uninstalled = "✗",
-          },
-        },
-      })
-    end,
-  })
-
-  use({
-    "neovim/nvim-lspconfig",
-    -- config = function()
-    --   require('configs/lspconfig')
-    -- end
-  })
-
-  use({
-    "jose-elias-alvarez/typescript.nvim",
-    config = function()
-      require("configs/lspconfig")
-      require("typescript").setup({
-        server = {},
-      })
     end,
   })
 
