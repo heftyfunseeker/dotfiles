@@ -108,7 +108,7 @@ return require("packer").startup(function(use)
     run = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "lua", "rust" },
+        ensure_installed = { "lua", "rust", "norg" },
         highlight = {
           enable = true,
         },
@@ -167,6 +167,7 @@ return require("packer").startup(function(use)
           { name = "buffer" },
           { name = "path" },
           { name = "cmdline" },
+          { name = "neorg" },
         }),
       })
     end,
@@ -179,6 +180,35 @@ return require("packer").startup(function(use)
       require("neogit").setup()
     end,
   })
+
+  use {
+    "nvim-neorg/neorg",
+    config = function()
+      require('neorg').setup {
+        load = {
+          ["core.defaults"] = {},
+          ["core.gtd.base"] = {
+            config = {
+              workspace = "gtd",
+            }
+          },
+          --["core.norg.completion"] = {},
+          ["core.norg.concealer"] = {},
+          --["core.presenter"] = {},
+          ["core.norg.dirman"] = {
+            config = {
+              workspaces = {
+                work = "~/notes/work",
+                home = "~/notes/home",
+                gtd = "~/notes/home/gtd",
+              }
+            }
+          }
+        }
+      }
+    end,
+    requires = "nvim-lua/plenary.nvim"
+  }
 
   use({
     "pwntester/octo.nvim",

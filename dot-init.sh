@@ -12,6 +12,12 @@ ln -snfv ~/dotfiles/.config/starship.toml ~/.config/starship.toml
 echo "linking fish"
 ln -snfv ~/dotfiles/.config/fish ~/.config/fish
 
+echo "linking kitty"
+ln -snfv ~/dotfiles/.config/kitty ~/.config/kitty
+
+echo "linking helix"
+ln -snfv ~/dotfiles/.config/helix ~/.config/helix
+
 # echo "installing brews"
 # bundle brew
 #
