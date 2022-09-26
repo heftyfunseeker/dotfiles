@@ -5,6 +5,9 @@ opt.guifont = "MonoLisa Nerd Font Mono:h16"
 opt.listchars = "tab:▷ ,trail:·,extends:◣,precedes:◢,nbsp:○"
 opt.list = true
 
+-- colorscheme
+g.catppuccin_flavour = "mocha"
+
 -- use filetype.lua instead of filetype.vim
 g.did_load_filetypes = 0
 g.do_filetype_lua = 1
