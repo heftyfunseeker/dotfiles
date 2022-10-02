@@ -7,10 +7,6 @@ opt.list = true
 
 g.catppuccin_flavour = "mocha"
 
--- use filetype.lua instead of filetype.vim
-g.did_load_filetypes = 0
-g.do_filetype_lua = 1
-
 opt.confirm = true
 opt.laststatus = 3 -- global statusline
 opt.title = true
