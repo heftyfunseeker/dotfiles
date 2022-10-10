@@ -62,19 +62,15 @@ return require("packer").startup(function(use)
     end,
   })
 
-  use({
+  use {
     "catppuccin/nvim",
     as = "catppuccin",
     config = function()
-      require("configs.catppuccin")
-
-      vim.cmd([[colorscheme catppuccin]])
-      -- custom highlights
-      vim.cmd("hi Comment gui=italic")
-      vim.cmd("hi Keyword gui=italic")
-      vim.cmd("hi Macro   gui=italic")
-    end,
-  })
+      vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+      require("catppuccin").setup()
+      vim.api.nvim_command "colorscheme catppuccin"
+    end
+  }
 
   use({
     "lewis6991/gitsigns.nvim",

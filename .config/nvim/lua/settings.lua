@@ -5,8 +5,6 @@ opt.guifont = "MonoLisa Nerd Font Mono:h16"
 opt.listchars = "tab:▷ ,trail:·,extends:◣,precedes:◢,nbsp:○"
 opt.list = true
 
-g.catppuccin_flavour = "mocha"
-
 opt.confirm = true
 opt.laststatus = 3 -- global statusline
 opt.title = true
