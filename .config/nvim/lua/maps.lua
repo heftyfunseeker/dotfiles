@@ -12,7 +12,7 @@ map("n", "<leader>n", ":bnext<CR>", options)
 map("n", "<leader>p", ":bprev<CR>", options)
 
 -- nvim tree
-map("n", "<C-n>", ":NvimTreeToggle<CR>", options)
+map("n", "<C-n>", ":NvimTreeFindFileToggle<CR>", options)
 
 -- window switching
 map("n", "<C-h>", "<C-w>h", options)
@@ -23,11 +23,11 @@ map("n", "<C-l>", "<C-w>l", options)
 -- telescope
 map("n", "<leader>ff", ":Telescope find_files<CR>", options)
 map("n", "<leader>fb", ":Telescope buffers<CR>", options)
-map("n", "<leader>s", ":Telescope live_grep<CR>", options)
+map("n", "<leader>sw", ":Telescope live_grep<CR>", options)
 map("n", "<leader>l", ":Telescope current_buffer_fuzzy_find<CR>", options)
 
 -- narrow
--- map('n', '<leader>s', ":lua require('narrow').open()<CR>", options)
+map('n', '<leader>s', ":lua require('narrow').open()<CR>", options)
 
 -- (toggle) terminal
 map("n", "<leader>t", ":ToggleTerm<CR>", options)
@@ -37,7 +37,7 @@ map("t", "<esc>", [[<C-\><C-n>]], options)
 map("n", "<leader>gb", ":lua require('utils').git_browse()<CR>", options)
 
 -- neogit
-map("n", "<leader>g", ":lua require('neogit').open()<CR>", options)
+map("n", "<leader>g", ":lua require('neogit').open({ kind = \"vsplit\" })<CR>", options)
 
 -- lsp config
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

@@ -15,7 +15,14 @@ return require("packer").startup(function(use)
   use("wbthomason/packer.nvim")
   use("nvim-lua/plenary.nvim")
   use("kyazdani42/nvim-web-devicons")
-  use("heftyfunseeker/narrow")
+  use("~/dev/narrow")
+
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup({})
+    end
+  }
 
   use({
     "williamboman/mason.nvim",
