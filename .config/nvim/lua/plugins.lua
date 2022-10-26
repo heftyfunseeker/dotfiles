@@ -75,9 +75,21 @@ return require("packer").startup(function(use)
     config = function()
       vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
       require("catppuccin").setup()
-      vim.api.nvim_command "colorscheme catppuccin"
+      -- vim.api.nvim_command "colorscheme catppuccin"
     end
   }
+
+  use({
+    'rose-pine/neovim',
+    as = 'rose-pine',
+    config = function()
+      require("rose-pine").setup({
+        dark_variant = "main"
+      })
+      -- vim.o.background = 'light'
+      vim.cmd('colorscheme rose-pine')
+    end
+  })
 
   use({
     "lewis6991/gitsigns.nvim",
@@ -101,7 +113,7 @@ return require("packer").startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()
       require("lualine").setup({
-        options = { theme = "catppuccin" },
+        options = { theme = "rose-pine" },
       })
     end,
   })
@@ -151,6 +163,9 @@ return require("packer").startup(function(use)
             require("luasnip").lsp_expand(args.body)
           end,
         },
+        completion = {
+          keyword_length = 1
+        },
         window = {
           -- completion = cmp.config.window.bordered(),
           -- documentation = cmp.config.window.bordered(),
@@ -162,7 +177,7 @@ return require("packer").startup(function(use)
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         },
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
@@ -176,8 +191,9 @@ return require("packer").startup(function(use)
   })
 
   use({
-    "TimUntersberger/neogit",
+    "ten3roberts/neogit",
     requires = "nvim-lua/plenary.nvim",
+    branch = "git-escapes",
     config = function()
       require("neogit").setup()
     end,
