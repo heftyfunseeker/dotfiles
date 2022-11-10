@@ -69,15 +69,25 @@ return require("packer").startup(function(use)
     end,
   })
 
-  use {
-    "catppuccin/nvim",
-    as = "catppuccin",
-    config = function()
-      vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
-      require("catppuccin").setup()
-      -- vim.api.nvim_command "colorscheme catppuccin"
-    end
-  }
+  -- colorschemes
+
+  -- use {
+  --   "catppuccin/nvim",
+  --   as = "catppuccin",
+  --   config = function()
+  --     vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+  --     require("catppuccin").setup()
+  --     --vim.api.nvim_command "colorscheme catppuccin"
+  --   end
+  -- }
+
+  -- use {
+  --   "rebelot/kanagawa.nvim",
+  --   config = function()
+  --     require("kanagawa").setup()
+  --     vim.cmd([[colorscheme kanagawa]])
+  --   end
+  -- }
 
   use({
     'rose-pine/neovim',
@@ -90,6 +100,14 @@ return require("packer").startup(function(use)
       vim.cmd('colorscheme rose-pine')
     end
   })
+
+  -- use({
+  --   "Mofiqul/dracula.nvim",
+  --   config = function()
+  --     require("dracula").setup()
+  --     vim.cmd([[colorscheme dracula]])
+  --   end
+  -- })
 
   use({
     "lewis6991/gitsigns.nvim",
@@ -184,16 +202,15 @@ return require("packer").startup(function(use)
           { name = "luasnip" }, -- For luasnip users.
           { name = "buffer" },
           { name = "path" },
-          { name = "cmdline" },
+          -- { name = "cmdline" },
         }),
       })
     end,
   })
 
   use({
-    "ten3roberts/neogit",
+    "TimUntersberger/neogit",
     requires = "nvim-lua/plenary.nvim",
-    branch = "git-escapes",
     config = function()
       require("neogit").setup()
     end,

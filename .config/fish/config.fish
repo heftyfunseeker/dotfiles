@@ -20,7 +20,7 @@ set PATH $PATH $LIBCLANG_PATH
 
 alias run_d_plus_mac_arm64="CONFIG_ENV=prod CONFIG_DOMAIN=dev http_proxy=socks5h://localhost:8889 https_proxy=socks5h://localhost:8889 $MERLIN_BINARY --extensions target/debug/extensions/ --wasm target/wasm32-unknown-unknown/release/dmgz_adk_app.wasm"
 
-alias run_d_plus_mac_arm64_qa="CONFIG_ENV=qa CONFIG_DOMAIN=dev http_proxy=socks5h://localhost:8889 https_proxy=socks5h://localhost:8889 $MERLIN_BINARY --extensions target/debug/extensions/ --wasm target/wasm32-unknown-unknown/release/dmgz_adk_app.wasm"
+alias run_d_plus_mac_arm64_qa="DISPLAY_MODE=1280x720 CONFIG_ENV=qa CONFIG_DOMAIN=dev http_proxy=socks5h://localhost:8889 https_proxy=socks5h://localhost:8889 $MERLIN_BINARY --extensions target/debug/extensions/ --wasm target/wasm32-unknown-unknown/release/dmgz_adk_app.wasm"
 
 starship init fish | source
 
