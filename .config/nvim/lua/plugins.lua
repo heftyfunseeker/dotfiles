@@ -71,15 +71,15 @@ return require("packer").startup(function(use)
 
   -- colorschemes
 
-  -- use {
-  --   "catppuccin/nvim",
-  --   as = "catppuccin",
-  --   config = function()
-  --     vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
-  --     require("catppuccin").setup()
-  --     --vim.api.nvim_command "colorscheme catppuccin"
-  --   end
-  -- }
+  use {
+    "catppuccin/nvim",
+    as = "catppuccin",
+    config = function()
+      vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+      require("catppuccin").setup()
+      vim.api.nvim_command([[colorscheme catppuccin]])
+    end
+  }
 
   -- use {
   --   "rebelot/kanagawa.nvim",
@@ -89,17 +89,17 @@ return require("packer").startup(function(use)
   --   end
   -- }
 
-  use({
-    'rose-pine/neovim',
-    as = 'rose-pine',
-    config = function()
-      require("rose-pine").setup({
-        dark_variant = "main"
-      })
-      -- vim.o.background = 'light'
-      vim.cmd('colorscheme rose-pine')
-    end
-  })
+  -- use({
+  --   'rose-pine/neovim',
+  --   as = 'rose-pine',
+  --   config = function()
+  --     require("rose-pine").setup({
+  --       dark_variant = "main"
+  --     })
+  --     -- vim.o.background = 'light'
+  --     vim.cmd('colorscheme rose-pine')
+  --   end
+  -- })
 
   -- use({
   --   "Mofiqul/dracula.nvim",
@@ -131,7 +131,7 @@ return require("packer").startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()
       require("lualine").setup({
-        options = { theme = "rose-pine" },
+        options = { theme = "catppuccin" },
       })
     end,
   })
