@@ -15,6 +15,9 @@ ln -snfv ~/dotfiles/.config/fish ~/.config/fish
 echo "linking kitty"
 ln -snfv ~/dotfiles/.config/kitty ~/.config/kitty
 
+echo "linking wezterm"
+ln -snfv ~/dotfiles/.config/wezterm ~/.config/wezterm
+
 echo "linking helix"
 ln -snfv ~/dotfiles/.config/helix ~/.config/helix
 

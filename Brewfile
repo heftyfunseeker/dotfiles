@@ -1,6 +1,8 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
+tap "wez/wezterm"
+brew "--cask wez/wezterm/wezterm"
 brew "cmake"
 brew "exercism"
 brew "fd"
