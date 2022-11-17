@@ -40,6 +40,14 @@ map("n", "<leader>gb", ":lua require('utils').git_browse()<CR>", options)
 map("n", "<leader>gv", ":lua require('neogit').open({ kind = \"vsplit\" })<CR>", options)
 map("n", "<leader>g", ":lua require('neogit').open()<CR>", options)
 
+-- Lua
+map("n", "<leader>xx", "<cmd>TroubleToggle<cr>", options)
+map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", options)
+map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", options)
+map("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", options)
+map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", options)
+map("n", "gr", "<cmd>TroubleToggle lsp_references<cr>", options)
+
 -- lsp config
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 map("n", "ge", "<cmd>lua vim.diagnostic.open_float()<CR>", options)
@@ -72,5 +80,4 @@ map(
 map("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", options)
 map("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)
 map("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", options)
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", options)
 map("n", "<space>f", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", options)

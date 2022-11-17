@@ -1,7 +1,7 @@
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({
+  PackerBootstrap = fn.system({
     "git",
     "clone",
     "--depth",
@@ -69,6 +69,14 @@ return require("packer").startup(function(use)
     end,
   })
 
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup({})
+    end
+  }
+
   -- colorschemes
 
   use {
@@ -80,34 +88,6 @@ return require("packer").startup(function(use)
       vim.api.nvim_command([[colorscheme catppuccin]])
     end
   }
-
-  -- use {
-  --   "rebelot/kanagawa.nvim",
-  --   config = function()
-  --     require("kanagawa").setup()
-  --     vim.cmd([[colorscheme kanagawa]])
-  --   end
-  -- }
-
-  -- use({
-  --   'rose-pine/neovim',
-  --   as = 'rose-pine',
-  --   config = function()
-  --     require("rose-pine").setup({
-  --       dark_variant = "main"
-  --     })
-  --     -- vim.o.background = 'light'
-  --     vim.cmd('colorscheme rose-pine')
-  --   end
-  -- })
-
-  -- use({
-  --   "Mofiqul/dracula.nvim",
-  --   config = function()
-  --     require("dracula").setup()
-  --     vim.cmd([[colorscheme dracula]])
-  --   end
-  -- })
 
   use({
     "lewis6991/gitsigns.nvim",
@@ -182,11 +162,11 @@ return require("packer").startup(function(use)
           end,
         },
         completion = {
-          keyword_length = 1
+          keyword_length = 2
         },
         window = {
-          -- completion = cmp.config.window.bordered(),
-          -- documentation = cmp.config.window.bordered(),
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
         },
         mapping = {
           ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -202,8 +182,15 @@ return require("packer").startup(function(use)
           { name = "luasnip" }, -- For luasnip users.
           { name = "buffer" },
           { name = "path" },
-          -- { name = "cmdline" },
+          { name = "cmdline" },
         }),
+      })
+      -- `/` cmdline setup.
+      cmp.setup.cmdline('/', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = 'buffer' }
+        }
       })
     end,
   })
@@ -228,21 +215,7 @@ return require("packer").startup(function(use)
     end,
   })
 
-  use({
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      require("null-ls").setup({
-        sources = {
-          -- require("null-ls").builtins.formatting.stylua,
-          require("null-ls").builtins.diagnostics.eslint,
-          require("null-ls").builtins.formatting.eslint,
-          require("null-ls").builtins.code_actions.eslint,
-        },
-      })
-    end,
-  })
-
-  if packer_bootstrap then
+  if PackerBootstrap then
     require("packer").sync()
   end
 end)

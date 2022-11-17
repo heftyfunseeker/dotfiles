@@ -12,7 +12,7 @@ telescope.setup({
       theme = "ivy",
     },
     find_files = {
-      theme = "dropdown",
+      theme = "ivy",
       previewer = false,
     },
   },
@@ -49,7 +49,7 @@ telescope.setup({
     file_sorter = require("telescope.sorters").get_fuzzy_file,
     file_ignore_patterns = { "node_modules" },
     generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-    path_display = { "smart" },
+    path_display = { "absolute" },
     winblend = 0,
     border = {},
     borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
