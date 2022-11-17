@@ -162,7 +162,7 @@ return require("packer").startup(function(use)
           end,
         },
         completion = {
-          keyword_length = 2
+          keyword_length = 1
         },
         window = {
           completion = cmp.config.window.bordered(),
@@ -182,7 +182,6 @@ return require("packer").startup(function(use)
           { name = "luasnip" }, -- For luasnip users.
           { name = "buffer" },
           { name = "path" },
-          { name = "cmdline" },
         }),
       })
       -- `/` cmdline setup.
@@ -192,14 +191,36 @@ return require("packer").startup(function(use)
           { name = 'buffer' }
         }
       })
+
+      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' }
+        }, {
+          { name = 'cmdline' }
+        })
+      })
     end,
   })
 
   use({
-    "TimUntersberger/neogit",
-    requires = "nvim-lua/plenary.nvim",
+    'sindrets/diffview.nvim',
+    requires = 'nvim-lua/plenary.nvim',
     config = function()
-      require("neogit").setup()
+      require("diffview").setup({})
+    end
+  })
+
+  use({
+    "TimUntersberger/neogit",
+    requires = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
+    config = function()
+      require("neogit").setup({
+        integrations = {
+          diffview = true
+        }
+      })
     end,
   })
 
