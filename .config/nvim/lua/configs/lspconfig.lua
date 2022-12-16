@@ -30,6 +30,10 @@ lspconfig.sumneko_lua.setup({
   }
 })
 
+lspconfig.jsonls.setup({
+  capabilities = capabilities,
+})
+
 -- diagnostic config
 local function lspSymbol(name, icon)
   local hl = "DiagnosticSign" .. name

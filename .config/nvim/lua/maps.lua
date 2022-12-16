@@ -24,10 +24,10 @@ map("n", "<C-l>", "<C-w>l", options)
 map("n", "<leader>ff", ":Telescope find_files<CR>", options)
 map("n", "<leader>fb", ":Telescope buffers<CR>", options)
 map("n", "<leader>sw", ":Telescope live_grep<CR>", options)
-map("n", "<leader>l", ":Telescope current_buffer_fuzzy_find<CR>", options)
 
 -- narrow
-map('n', '<leader>s', ":lua require('narrow').open()<CR>", options)
+map('n', '<leader>s', ":lua require('narrow').search_project()<CR>", options)
+map('n', '<leader>l', ":lua require('narrow').search_current_file()<CR>", options)
 
 -- (toggle) terminal
 map("n", "<leader>t", ":ToggleTerm<CR>", options)
@@ -40,13 +40,23 @@ map("n", "<leader>gb", ":lua require('utils').git_browse()<CR>", options)
 map("n", "<leader>gv", ":lua require('neogit').open({ kind = \"vsplit\" })<CR>", options)
 map("n", "<leader>g", ":lua require('neogit').open()<CR>", options)
 
--- Lua
+-- Trouble
 map("n", "<leader>xx", "<cmd>TroubleToggle<cr>", options)
 map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", options)
 map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", options)
 map("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", options)
 map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", options)
 map("n", "gr", "<cmd>TroubleToggle lsp_references<cr>", options)
+
+-- Dap
+map("n", "<leader>b", [[:lua require("dap").toggle_breakpoint()<CR>]], options)
+map("n", "<leader>B", [[:lua require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>]], options)
+map("n", "<leader>dl", [[:lua require("dap").run_last()<CR>]], options)
+map("n", "<leader>dc", [[:lua require("dap").continue()<CR>]], options)
+map("n", "<leader>di", [[:lua require("dap").step_into()<CR>]], options)
+map("n", "<leader>do", [[:lua require("dap").step_over()<CR>]], options)
+map("n", "<leader>du", [[:lua require("dap").step_out()<CR>]], options)
+map("n", "<leader>dd", [[:lua require("dapui").toggle()<CR>]], options)
 
 -- lsp config
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

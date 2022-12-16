@@ -17,6 +17,43 @@ return require("packer").startup(function(use)
   use("kyazdani42/nvim-web-devicons")
   use("~/dev/narrow")
 
+  use("mfussenegger/nvim-dap")
+  use("theHamsta/nvim-dap-virtual-text")
+
+  use({
+    "rcarriga/nvim-dap-ui",
+    requires = { "mfussenegger/nvim-dap" },
+    config = function()
+      local dap = require("dap")
+
+      dap.adapters.lldb = {
+        type = 'server',
+        port = "13000",
+        executable = {
+          command = "/Users/niccosimone/.local/share/nvim/mason/bin/codelldb",
+          args = { "--port", "13000" },
+        }
+      }
+      dap.configurations.rust = {
+        {
+          name = 'Launch',
+          type = 'lldb',
+          request = 'launch',
+          program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          end,
+          cwd = '${workspaceFolder}',
+          stopOnEntry = false,
+          args = {},
+          runInTerminal = false,
+        }
+      }
+
+      require("dapui").setup()
+      require("nvim-dap-virtual-text").setup()
+    end
+  })
+
   use {
     "folke/which-key.nvim",
     config = function()
@@ -84,7 +121,7 @@ return require("packer").startup(function(use)
     as = "catppuccin",
     config = function()
       vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
-      require("catppuccin").setup()
+      require("configs/catppuccin")
       vim.api.nvim_command([[colorscheme catppuccin]])
     end
   }
@@ -140,7 +177,7 @@ return require("packer").startup(function(use)
   use({
     "akinsho/toggleterm.nvim",
     config = function()
-      require("toggleterm").setup()
+      require("toggleterm").setup({})
     end,
   })
 

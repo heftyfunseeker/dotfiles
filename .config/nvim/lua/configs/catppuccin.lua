@@ -59,10 +59,10 @@ require("catppuccin").setup({
       transparent_panel = false,
     },
     dap = {
-      enabled = false,
-      enable_ui = false,
+      enabled = true,
+      enable_ui = true,
     },
-    which_key = false,
+    which_key = true,
     indent_blankline = {
       enabled = true,
       colored_indent_levels = false,
@@ -78,7 +78,7 @@ require("catppuccin").setup({
     ts_rainbow = false,
     hop = false,
     notify = true,
-    telekasten = true,
+    telekasten = false,
     symbols_outline = true,
     mini = false,
   },
