@@ -26,11 +26,12 @@ return require("packer").startup(function(use)
     config = function()
       local dap = require("dap")
 
+      local codelldb_path = table.concat({ vim.fn.stdpath("data"), "mason", "bin", "codelldb" }, "/")
       dap.adapters.lldb = {
         type = 'server',
         port = "13000",
         executable = {
-          command = "/Users/niccosimone/.local/share/nvim/mason/bin/codelldb",
+          command = codelldb_path,
           args = { "--port", "13000" },
         }
       }
