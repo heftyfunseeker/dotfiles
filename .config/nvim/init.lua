@@ -1,5 +1,5 @@
 
-require('maps')
-require('plugins')
-require('settings')
+require('heftyfunseeker.maps')
+require('heftyfunseeker.plugins')
+require('heftyfunseeker.settings')
 

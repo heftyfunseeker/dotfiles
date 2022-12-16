@@ -80,7 +80,7 @@ return require("packer").startup(function(use)
   use({
     "neovim/nvim-lspconfig",
     config = function()
-      require("configs/lspconfig")
+      require("heftyfunseeker.configs.lspconfig")
     end
   })
 
@@ -121,7 +121,7 @@ return require("packer").startup(function(use)
     as = "catppuccin",
     config = function()
       vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
-      require("configs/catppuccin")
+      require("heftyfunseeker.configs.catppuccin")
       vim.api.nvim_command([[colorscheme catppuccin]])
     end
   }
@@ -170,7 +170,7 @@ return require("packer").startup(function(use)
     "nvim-telescope/telescope.nvim",
     requires = { { "nvim-lua/plenary.nvim" } },
     config = function()
-      require("configs/telescope")
+      require("heftyfunseeker.configs.telescope")
     end,
   })
 
@@ -269,7 +269,7 @@ return require("packer").startup(function(use)
       "kyazdani42/nvim-web-devicons",
     },
     config = function()
-      require("configs.octo")
+      require("heftyfunseeker.configs.octo")
     end,
   })
 
