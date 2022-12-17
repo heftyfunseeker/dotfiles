@@ -11,6 +11,7 @@ opt.title = true
 opt.clipboard = "unnamedplus"
 opt.cmdheight = 1
 opt.cul = true -- cursor line
+opt.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 
 -- Indentline
 opt.expandtab = true

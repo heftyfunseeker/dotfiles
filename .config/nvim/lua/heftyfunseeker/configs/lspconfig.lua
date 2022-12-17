@@ -5,10 +5,18 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local lspconfig = require("lspconfig")
+local navic = require("nvim-navic")
+
+local on_attach = function(client, bufnr)
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
+end
 
 -- rust
 lspconfig.rust_analyzer.setup({
   capabilities = capabilities,
+  on_attach = on_attach,
   settings = {
     ["rust-analyzer"] = {
       checkOnSave = {
@@ -21,6 +29,7 @@ lspconfig.rust_analyzer.setup({
 -- lua
 lspconfig.sumneko_lua.setup({
   capabilities = capabilities,
+  on_attach = on_attach,
   settings = {
     Lua = {
       diagnostics = {
@@ -31,6 +40,7 @@ lspconfig.sumneko_lua.setup({
 })
 
 lspconfig.jsonls.setup({
+  on_attach = on_attach,
   capabilities = capabilities,
 })
 
