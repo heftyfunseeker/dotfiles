@@ -73,7 +73,7 @@ return require("packer").startup(function(use)
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "sumneko_lua", "rust_analyzer" }
+        automatic_installation = true,
       })
     end
   })
@@ -158,8 +158,12 @@ return require("packer").startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
     config = function()
+      -- use markdown in octo buffers
+      local ft_to_parser = require "nvim-treesitter.parsers".filetype_to_parsername
+      ft_to_parser.octo = "markdown"
+
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "lua", "rust", "norg" },
+        ensure_installed = "all",
         highlight = {
           enable = true,
         },
@@ -209,7 +213,7 @@ return require("packer").startup(function(use)
         mapping = {
           ["<C-p>"] = cmp.mapping.select_prev_item(),
           ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-b>"] = cmp.mapping.scroll_docs( -4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),

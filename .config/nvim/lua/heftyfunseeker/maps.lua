@@ -34,7 +34,7 @@ map("n", "<leader>t", ":ToggleTerm<CR>", options)
 map("t", "<esc>", [[<C-\><C-n>]], options)
 
 -- custom utils
-map("n", "<leader>gb", ":lua require('utils').git_browse()<CR>", options)
+map("n", "<leader>gb", ":lua require('heftyfunseeker.utils').git_browse()<CR>", options)
 
 -- neogit
 map("n", "<leader>gv", ":lua require('neogit').open({ kind = \"vsplit\" })<CR>", options)
