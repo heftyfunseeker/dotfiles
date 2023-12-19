@@ -140,7 +140,11 @@ return require("packer").startup(function(use)
       "kyazdani42/nvim-web-devicons", -- optional, for file icon
     },
     config = function()
-      require("nvim-tree").setup()
+      require("nvim-tree").setup({
+        git = {
+          ignore = false
+        }
+      })
     end,
   })
 
@@ -159,8 +163,7 @@ return require("packer").startup(function(use)
     run = ":TSUpdate",
     config = function()
       -- use markdown in octo buffers
-      local ft_to_parser = require "nvim-treesitter.parsers".filetype_to_parsername
-      ft_to_parser.octo = "markdown"
+      vim.treesitter.language.register("octo", "markdown")
 
       require("nvim-treesitter.configs").setup({
         ensure_installed = "all",
@@ -213,7 +216,7 @@ return require("packer").startup(function(use)
         mapping = {
           ["<C-p>"] = cmp.mapping.select_prev_item(),
           ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-b>"] = cmp.mapping.scroll_docs( -4),
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
