@@ -19,6 +19,7 @@ set PATH $PATH $HOME/.local/bin
 set PATH $PATH $HOME/.cargo/bin
 set PATH $PATH $HOME/.cargo/env
 set PATH $PATH $LIBCLANG_PATH
+set PATH "$(pyenv root)/version/2.7.18/bin:$PATH"
 
 alias run_d_plus_mac_arm64="CONFIG_ENV=prod CONFIG_DOMAIN=dev http_proxy=socks5h://localhost:8889 https_proxy=socks5h://localhost:8889 $MERLIN_BINARY  --wasm target/wasm32-unknown-unknown/release/dmgz_adk_app.wasm"
 

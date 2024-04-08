@@ -4,8 +4,7 @@ SETUVAR --export CARGO_M5_BUILD_DIR:/Users/niccosimone/disneystreaming/ncp\x2dm5
 SETUVAR --export --path DYLD_LIBRARY_PATH:/Library/Developer/CommandLineTools/usr/lib
 SETUVAR --export --path LD_LIBRARY_PATH:/Library/Developer/CommandLineTools/usr/lib
 SETUVAR --export --path LIBCLANG_PATH:/Library/Developer/CommandLineTools/usr/lib
-SETUVAR --export MERLIN_BINARY:/Users/niccosimone/disneystreaming/ncp\x2dm5/build/bin/emu_stb_gpu_macosx_arm64/debug/merlin\x2eapp
-SETUVAR __fish_initialized:3100
+SETUVAR __fish_initialized:3400
 SETUVAR fish_color_autosuggestion:brblack
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:brgreen

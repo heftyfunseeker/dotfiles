@@ -6,6 +6,11 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 local lspconfig = require("lspconfig")
 local navic = require("nvim-navic")
 
+local handlers = {
+  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+}
+
 local on_attach = function(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
     navic.attach(client, bufnr)
@@ -16,6 +21,7 @@ end
 lspconfig.rust_analyzer.setup({
   capabilities = capabilities,
   on_attach = on_attach,
+  handlers = handlers,
   settings = {
     ["rust-analyzer"] = {
       checkOnSave = {
@@ -29,6 +35,7 @@ lspconfig.rust_analyzer.setup({
 lspconfig.lua_ls.setup({
   capabilities = capabilities,
   on_attach = on_attach,
+  handlers = handlers,
   settings = {
     Lua = {
       diagnostics = {
@@ -38,10 +45,21 @@ lspconfig.lua_ls.setup({
   }
 })
 
-lspconfig.jsonls.setup({
-  on_attach = on_attach,
+lspconfig.jsonls.setup {
   capabilities = capabilities,
-})
+  on_attach = on_attach,
+  handlers = handlers,
+  cmd = { "vscode-json-language-server", "--stdio" },
+  filetypes = { "json", "jsonc" },
+  init_options = {
+    provideFormatter = true,
+  },
+  settings = {
+    json = {
+      validate = { enable = true },
+    },
+  },
+}
 
 -- diagnostic config
 local function lspSymbol(name, icon)

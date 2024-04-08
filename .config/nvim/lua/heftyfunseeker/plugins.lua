@@ -15,6 +15,7 @@ return require("packer").startup(function(use)
   use("wbthomason/packer.nvim")
   use("nvim-lua/plenary.nvim")
   use("kyazdani42/nvim-web-devicons")
+  use("nvim-neotest/nvim-nio")
   use("~/dev/narrow")
 
   use("mfussenegger/nvim-dap")
