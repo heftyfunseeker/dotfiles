@@ -72,6 +72,7 @@ return require("packer").startup(function(use)
 
   use({
     "williamboman/mason-lspconfig.nvim",
+    after = "mason.nvim",
     config = function()
       require("mason-lspconfig").setup({
         automatic_installation = true,
@@ -81,6 +82,7 @@ return require("packer").startup(function(use)
 
   use({
     "neovim/nvim-lspconfig",
+    after = "mason-lspconfig.nvim",
     config = function()
       require("heftyfunseeker.configs.lspconfig")
     end
