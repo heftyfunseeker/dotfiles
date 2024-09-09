@@ -28,7 +28,7 @@ require('lspconfig').rust_analyzer.setup({
         extraArgs = { "--offline" }, -- Your existing args
       },
       cargo = {
-        features = { "disney_plus", "use-archie" },
+        features = { "use-archie" },
       },
       rustfmt = {
         overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" }
