@@ -18,14 +18,20 @@ local on_attach = function(client, bufnr)
 end
 
 -- rust
-lspconfig.rust_analyzer.setup({
+require('lspconfig').rust_analyzer.setup({
   capabilities = capabilities,
   on_attach = on_attach,
   handlers = handlers,
   settings = {
     ["rust-analyzer"] = {
       checkOnSave = {
-        extraArgs = { "--offline" }
+        extraArgs = { "--offline" }, -- Your existing args
+      },
+      cargo = {
+        features = { "disney_plus", "use-archie" },
+      },
+      rustfmt = {
+        overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" }
       }
     }
   }
