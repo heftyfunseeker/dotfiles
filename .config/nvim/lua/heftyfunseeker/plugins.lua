@@ -17,7 +17,7 @@ require("lazy").setup({
   { "nvim-lua/plenary.nvim" },
   { "kyazdani42/nvim-web-devicons" },
   { "nvim-neotest/nvim-nio" },
-  { dir = "~/dev/narrow" },
+  { "heftyfunseeker/narrow" },
 
   -- Debugging Plugins
   { "mfussenegger/nvim-dap" },
