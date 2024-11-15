@@ -1,29 +1,31 @@
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PackerBootstrap = fn.system({
+-- Check if lazy.nvim is installed, and if not, install it
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
     "git",
     "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
   })
 end
+vim.opt.rtp:prepend(lazypath)
 
-return require("packer").startup(function(use)
-  use("wbthomason/packer.nvim")
-  use("nvim-lua/plenary.nvim")
-  use("kyazdani42/nvim-web-devicons")
-  use("nvim-neotest/nvim-nio")
-  use("~/dev/narrow")
+require("lazy").setup({
+  -- Core Plugins
+  { "nvim-lua/plenary.nvim" },
+  { "kyazdani42/nvim-web-devicons" },
+  { "nvim-neotest/nvim-nio" },
+  { dir = "~/dev/narrow" },
 
-  use("mfussenegger/nvim-dap")
-  use("theHamsta/nvim-dap-virtual-text")
+  -- Debugging Plugins
+  { "mfussenegger/nvim-dap" },
+  { "theHamsta/nvim-dap-virtual-text" },
 
-  use({
+  {
     "rcarriga/nvim-dap-ui",
-    requires = { "mfussenegger/nvim-dap" },
+    dependencies = { "mfussenegger/nvim-dap" },
     config = function()
       local dap = require("dap")
 
@@ -42,7 +44,8 @@ return require("packer").startup(function(use)
           type = 'lldb',
           request = 'launch',
           program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/',
+              'file')
           end,
           cwd = '${workspaceFolder}',
           stopOnEntry = false,
@@ -54,94 +57,133 @@ return require("packer").startup(function(use)
       require("dapui").setup()
       require("nvim-dap-virtual-text").setup()
     end
-  })
+  },
 
-  use {
+  -- Surround Plugin
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    config = function()
+      require("nvim-surround").setup({})
+    end,
+  },
+
+  -- Keybinding Plugin
+  {
     "folke/which-key.nvim",
     config = function()
       require("which-key").setup({})
-    end
-  }
+    end,
+  },
 
-  use({
+  -- Mason Plugin
+  {
     "williamboman/mason.nvim",
     config = function()
       require("mason").setup()
-    end
-  })
-
-  use({
+    end,
+  },
+  {
     "williamboman/mason-lspconfig.nvim",
-    after = "mason.nvim",
+    dependencies = { "mason.nvim" },
     config = function()
       require("mason-lspconfig").setup({
         automatic_installation = true,
       })
-    end
-  })
+    end,
+  },
 
-  use({
+  -- LSP Config
+  {
     "neovim/nvim-lspconfig",
-    after = "mason-lspconfig.nvim",
+    dependencies = { "mason-lspconfig.nvim" },
     config = function()
       require("heftyfunseeker.configs.lspconfig")
-    end
-  })
+    end,
+  },
 
-
-  use({
+  -- Navigation Plugins
+  {
     "ggandor/leap.nvim",
     config = function()
       require("leap").set_default_keymaps()
     end,
-  })
-
-  use({
+  },
+  {
     "numToStr/Comment.nvim",
     config = function()
       require("Comment").setup()
     end,
-  })
-
-  use({
+  },
+  {
     "j-hui/fidget.nvim",
     config = function()
       require("fidget").setup({})
     end,
-  })
+  },
 
-  use {
+  -- Trouble Plugin
+  {
     "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup({})
-    end
-  }
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>gr",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
+  },
 
-  -- colorschemes
-
-  use {
+  -- Colorscheme
+  {
     "catppuccin/nvim",
-    as = "catppuccin",
+    name = "catppuccin",
     config = function()
-      vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+      vim.g.catppuccin_flavour = "mocha"
       require("heftyfunseeker.configs.catppuccin")
       vim.api.nvim_command([[colorscheme catppuccin]])
-    end
-  }
+    end,
+  },
 
-  use({
+  -- Git Signs Plugin
+  {
     "lewis6991/gitsigns.nvim",
     config = function()
       require("gitsigns").setup()
     end,
-  })
+  },
 
-  use({
+  -- File Explorer
+  {
     "kyazdani42/nvim-tree.lua",
-    requires = {
-      "kyazdani42/nvim-web-devicons", -- optional, for file icon
-    },
+    dependencies = { "kyazdani42/nvim-web-devicons" },
     config = function()
       require("nvim-tree").setup({
         git = {
@@ -149,57 +191,63 @@ return require("packer").startup(function(use)
         }
       })
     end,
-  })
+  },
 
-  use({
+  -- Statusline
+  {
     "nvim-lualine/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    dependencies = { "kyazdani42/nvim-web-devicons" },
     config = function()
       require("lualine").setup({
         options = { theme = "catppuccin" },
       })
     end,
-  })
+  },
 
-  use({
+  -- Treesitter Configuration
+  {
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
+    build = ":TSUpdate",
     config = function()
-      -- use markdown in octo buffers
-      vim.treesitter.language.register("octo", "markdown")
-
+      -- Treesitter setup with selected languages
       require("nvim-treesitter.configs").setup({
-        ensure_installed = "all",
+        -- Specify the languages you want to include
+        ensure_installed = {
+          "c", "cpp", "rust", "javascript", "typescript", "lua",
+          "json", "html", "css", "ruby", "bash", "markdown"
+        },
         highlight = {
-          enable = true,
+          enable = true, -- enable highlighting for the specified languages
         },
       })
     end,
-  })
+  },
 
-  use({
+  -- Telescope
+  {
     "nvim-telescope/telescope.nvim",
-    requires = { { "nvim-lua/plenary.nvim" } },
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("heftyfunseeker.configs.telescope")
     end,
-  })
+  },
 
-  use({
+  -- Terminal Plugin
+  {
     "akinsho/toggleterm.nvim",
     config = function()
       require("toggleterm").setup({})
     end,
-  })
+  },
 
-  use("hrsh7th/cmp-nvim-lsp")
-  use("hrsh7th/cmp-buffer")
-  use("hrsh7th/cmp-path")
-  use("hrsh7th/cmp-cmdline")
-  use("saadparwaiz1/cmp_luasnip")
-  use("L3MON4D3/LuaSnip")
-
-  use({
+  -- Completion Plugins
+  { "hrsh7th/cmp-nvim-lsp" },
+  { "hrsh7th/cmp-buffer" },
+  { "hrsh7th/cmp-path" },
+  { "hrsh7th/cmp-cmdline" },
+  { "saadparwaiz1/cmp_luasnip" },
+  { "L3MON4D3/LuaSnip" },
+  {
     "hrsh7th/nvim-cmp",
     config = function()
       local cmp = require("cmp")
@@ -223,16 +271,16 @@ return require("packer").startup(function(use)
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ["<CR>"] = cmp.mapping.confirm({ select = false }),
         },
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          { name = "luasnip" }, -- For luasnip users.
+          { name = "luasnip" },
           { name = "buffer" },
           { name = "path" },
         }),
       })
-      -- `/` cmdline setup.
+      -- `/` cmdline setup
       cmp.setup.cmdline('/', {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
@@ -240,7 +288,7 @@ return require("packer").startup(function(use)
         }
       })
 
-      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+      -- Use cmdline & path source for `:`
       cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
@@ -250,39 +298,28 @@ return require("packer").startup(function(use)
         })
       })
     end,
-  })
+  },
 
-  use({
+  -- Git Integration Plugins
+  {
     'sindrets/diffview.nvim',
-    requires = 'nvim-lua/plenary.nvim',
+    dependencies = 'nvim-lua/plenary.nvim',
     config = function()
       require("diffview").setup({})
-    end
-  })
-
-  use({
+    end,
+  },
+  {
     "TimUntersberger/neogit",
-    requires = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
     config = function()
       require("neogit").setup({})
     end,
-  })
+  },
 
-  use({
-    "pwntester/octo.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "kyazdani42/nvim-web-devicons",
-    },
-    config = function()
-      require("heftyfunseeker.configs.octo")
-    end,
-  })
-
-  use({
+  -- Navic Plugin
+  {
     "SmiteshP/nvim-navic",
-    requires = "neovim/nvim-lspconfig",
+    dependencies = "neovim/nvim-lspconfig",
     config = function()
       require("nvim-navic").setup({
         icons = {
@@ -314,10 +351,9 @@ return require("packer").startup(function(use)
           TypeParameter = ' '
         }
       })
-    end
-  })
-
-  if PackerBootstrap then
-    require("packer").sync()
-  end
-end)
+    end,
+  }
+}, {
+  defaults = { lazy = false },
+  checker = { enabled = true }, -- automatically check for plugin updates
+})

@@ -51,12 +51,12 @@ map("n", "gr", "<cmd>TroubleToggle lsp_references<cr>", options)
 -- Dap
 map("n", "<leader>b", [[:lua require("dap").toggle_breakpoint()<CR>]], options)
 map("n", "<leader>B", [[:lua require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>]], options)
-map("n", "<leader>dl", [[:lua require("dap").run_last()<CR>]], options)
-map("n", "<leader>dc", [[:lua require("dap").continue()<CR>]], options)
-map("n", "<leader>di", [[:lua require("dap").step_into()<CR>]], options)
-map("n", "<leader>do", [[:lua require("dap").step_over()<CR>]], options)
-map("n", "<leader>du", [[:lua require("dap").step_out()<CR>]], options)
-map("n", "<leader>dd", [[:lua require("dapui").toggle()<CR>]], options)
+-- map("n", "<leader>dl", [[:lua require("dap").run_last()<CR>]], options)
+-- map("n", "<leader>dc", [[:lua require("dap").continue()<CR>]], options)
+-- map("n", "<leader>di", [[:lua require("dap").step_into()<CR>]], options)
+-- map("n", "<leader>do", [[:lua require("dap").step_over()<CR>]], options)
+-- map("n", "<leader>du", [[:lua require("dap").step_out()<CR>]], options)
+-- map("n", "<leader>dd", [[:lua require("dapui").toggle()<CR>]], options)
 
 -- lsp config
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
