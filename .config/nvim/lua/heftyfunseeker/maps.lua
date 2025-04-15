@@ -24,6 +24,7 @@ map("n", "<C-l>", "<C-w>l", options)
 map("n", "<leader>ff", ":Telescope find_files<CR>", options)
 map("n", "<leader>fb", ":Telescope buffers<CR>", options)
 map("n", "<leader>sw", ":Telescope live_grep<CR>", options)
+map("n", "gr", ":Telescope lsp_references<CR>", options)
 
 -- narrow
 map('n', '<leader>s', ":lua require('narrow').search_project()<CR>", options)
@@ -39,14 +40,6 @@ map("n", "<leader>gb", ":lua require('heftyfunseeker.utils').git_browse()<CR>", 
 -- neogit
 map("n", "<leader>gv", ":lua require('neogit').open({ kind = \"vsplit\" })<CR>", options)
 map("n", "<leader>g", ":lua require('neogit').open()<CR>", options)
-
--- Trouble
-map("n", "<leader>xx", "<cmd>TroubleToggle<cr>", options)
-map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", options)
-map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", options)
-map("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", options)
-map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", options)
-map("n", "gr", "<cmd>TroubleToggle lsp_references<cr>", options)
 
 -- Dap
 map("n", "<leader>b", [[:lua require("dap").toggle_breakpoint()<CR>]], options)
