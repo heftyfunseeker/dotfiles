@@ -26,6 +26,10 @@ map("n", "<leader>fb", ":Telescope buffers<CR>", options)
 map("n", "<leader>sw", ":Telescope live_grep<CR>", options)
 map("n", "gr", ":Telescope lsp_references<CR>", options)
 
+-- quickfix
+map("n", "<M-j>", "<cmd>cnext<CR>", options)
+map("n", "<M-k>", "<cmd>cprev<CR>", options)
+
 -- narrow
 map('n', '<leader>s', ":lua require('narrow').search_project()<CR>", options)
 map('n', '<leader>l', ":lua require('narrow').search_current_file()<CR>", options)
