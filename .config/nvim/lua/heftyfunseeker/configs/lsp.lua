@@ -3,7 +3,6 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-local lspconfig = require("lspconfig")
 local navic = require("nvim-navic")
 
 local handlers = {
@@ -18,54 +17,37 @@ local on_attach = function(client, bufnr)
 end
 
 -- rust
-require('lspconfig').rust_analyzer.setup({
+vim.lsp.config('rust_analyzer', {
   capabilities = capabilities,
   on_attach = on_attach,
   handlers = handlers,
   settings = {
     ["rust-analyzer"] = {
-      checkOnSave = {
-        extraArgs = { "--offline" }, -- Your existing args
-      },
-      cargo = {
-        features = { "use-archie" },
-      },
-      rustfmt = {
-        overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" }
-      }
-    }
-  }
+      checkOnSave = { extraArgs = { "--offline" } },
+      cargo = { features = { "use-archie" } },
+      rustfmt = { overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" } },
+    },
+  },
 })
 
--- lua
-lspconfig.lua_ls.setup({
+vim.lsp.config('lua_ls', {
   capabilities = capabilities,
   on_attach = on_attach,
   handlers = handlers,
   settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" }
-      }
-    }
-  }
+    Lua = { diagnostics = { globals = { "vim" } } },
+  },
 })
 
-lspconfig.jsonls.setup {
+vim.lsp.config('jsonls', {
   capabilities = capabilities,
   on_attach = on_attach,
   handlers = handlers,
   cmd = { "vscode-json-language-server", "--stdio" },
   filetypes = { "json", "jsonc" },
-  init_options = {
-    provideFormatter = true,
-  },
-  settings = {
-    json = {
-      validate = { enable = true },
-    },
-  },
-}
+  init_options = { provideFormatter = true },
+  settings = { json = { validate = { enable = true } } },
+})
 
 -- diagnostic config
 local function lspSymbol(name, icon)

@@ -93,22 +93,27 @@ require("lazy").setup({
     end,
   },
 
-  -- LSP Config
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = { "mason-lspconfig.nvim" },
-    config = function()
-      require("heftyfunseeker.configs.lspconfig")
-    end,
-  },
+{
+  "WhoIsSethDaniel/mason-tool-installer.nvim",
+  dependencies = { "williamboman/mason.nvim" },
+  config = function()
+    require("mason-tool-installer").setup({
+      -- install the tools you use; no lspconfig needed
+      ensure_installed = {
+        "rust-analyzer",
+        "lua-language-server",
+        "json-lsp",
+        -- add formatters/linters if you want:
+        -- "stylua", "prettierd", "eslint_d"
+      },
+      run_on_start = true,
+      auto_update = false,
+      start_delay = 0,
+    })
+  end,
+},
 
   -- Navigation Plugins
-  {
-    "ggandor/leap.nvim",
-    config = function()
-      require("leap").set_default_keymaps()
-    end,
-  },
   {
     "numToStr/Comment.nvim",
     config = function()
@@ -120,45 +125,6 @@ require("lazy").setup({
     config = function()
       require("fidget").setup({})
     end,
-  },
-
-  -- Trouble Plugin
-  {
-    "folke/trouble.nvim",
-    opts = {}, -- for default options, refer to the configuration section for custom setup.
-    cmd = "Trouble",
-    keys = {
-      {
-        "<leader>xx",
-        "<cmd>Trouble diagnostics toggle<cr>",
-        desc = "Diagnostics (Trouble)",
-      },
-      {
-        "<leader>xX",
-        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-        desc = "Buffer Diagnostics (Trouble)",
-      },
-      {
-        "<leader>cs",
-        "<cmd>Trouble symbols toggle focus=false<cr>",
-        desc = "Symbols (Trouble)",
-      },
-      {
-        "<leader>gr",
-        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-        desc = "LSP Definitions / references / ... (Trouble)",
-      },
-      {
-        "<leader>xL",
-        "<cmd>Trouble loclist toggle<cr>",
-        desc = "Location List (Trouble)",
-      },
-      {
-        "<leader>xQ",
-        "<cmd>Trouble qflist toggle<cr>",
-        desc = "Quickfix List (Trouble)",
-      },
-    },
   },
 
   -- Colorscheme
@@ -319,7 +285,6 @@ require("lazy").setup({
   -- Navic Plugin
   {
     "SmiteshP/nvim-navic",
-    dependencies = "neovim/nvim-lspconfig",
     config = function()
       require("nvim-navic").setup({
         icons = {
